@@ -81,16 +81,6 @@
       "userId": 2
     },
     {
-      "id": 4,
-      "animalId": 4,
-      "userId": 14
-    },
-    {
-      "id": 5,
-      "animalId": 5,
-      "userId": 12
-    },
-    {
       "id": 6,
       "animalId": 6,
       "userId": 7
@@ -106,11 +96,6 @@
       "userId": 1
     },
     {
-      "id": 9,
-      "animalId": 9,
-      "userId": 11
-    },
-    {
       "id": 10,
       "animalId": 10,
       "userId": 4
@@ -119,11 +104,6 @@
       "id": 11,
       "animalId": 11,
       "userId": 3
-    },
-    {
-      "id": 12,
-      "animalId": 3,
-      "userId": 14
     }
   ],
   "users": [
@@ -188,24 +168,6 @@
       "employee": true
     },
     {
-      "name": "Charisse Lambert",
-      "email": "charisse@lambert.com",
-      "id": 11,
-      "employee": true
-    },
-    {
-      "name": "Madi Peper",
-      "email": "madi@peper.com",
-      "id": 12,
-      "employee": true
-    },
-    {
-      "name": "Jenna Solis",
-      "email": "jenna@solis.com",
-      "id": 14,
-      "employee": true
-    },
-    {
       "id": 15,
       "name": "Ryan Tanay",
       "email": "ryan@tanay.com",
@@ -246,18 +208,6 @@
       "email": "m@m.com",
       "employee": false,
       "id": 21
-    },
-    {
-      "name": "Eric \"Macho Man\" Taylor",
-      "email": "macho@man.com",
-      "employee": true,
-      "id": 22
-    },
-    {
-      "name": "Nathan Center",
-      "email": "nathanjcenter@gmail.com",
-      "employee": true,
-      "id": 23
     }
   ],
   "employeeLocations": [
@@ -315,21 +265,6 @@
       "id": 10,
       "userId": 10,
       "locationId": 1
-    },
-    {
-      "id": 11,
-      "userId": 11,
-      "locationId": 1
-    },
-    {
-      "id": 12,
-      "userId": 12,
-      "locationId": 2
-    },
-    {
-      "id": 14,
-      "userId": 14,
-      "locationId": 2
     }
   ],
   "locations": [
