@@ -19,6 +19,9 @@ export const Animal = ({ animal, syncAnimals,
     const { animalId } = useParams()
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
 
+    
+    console.log("currAn "+ JSON.stringify())
+
     useEffect(() => {
         setAuth(getCurrentUser().employee)
         resolveResource(animal, animalId, AnimalRepository.get)
@@ -84,7 +87,7 @@ export const Animal = ({ animal, syncAnimals,
                         <section>
                             <h6>Caretaker(s)</h6>
                             <span className="small">
-                                Unknown
+                            <p>{`${animal.animalCaretakers[0].user.name}`}</p>
                             </span>
 
 
