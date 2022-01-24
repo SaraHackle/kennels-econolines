@@ -24,11 +24,10 @@ export default ({ employee }) => {
 
     useEffect(() => {
         if (resource?.employeeLocations?.length > 0) {
-            markLocation(resource.employeeLocations[0])      
+            markLocation(resource.employeeLocations[0])
         }
     }, [resource])
-   
-    
+
     return (
         <article className={classes}>
             <section className="card-body">
@@ -54,7 +53,7 @@ export default ({ employee }) => {
                               <p>Caring for {`${resource.animals?.length}`} animals</p>
                             </section>
                             <section>
-                                
+                                Working at unknown location
                             </section>
                         </>
                         : ""
@@ -69,5 +68,3 @@ export default ({ employee }) => {
         </article>
     )
 }
-
-
