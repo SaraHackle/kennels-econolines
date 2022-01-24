@@ -11,6 +11,7 @@ export const Animal = ({ animal, syncAnimals,
     showTreatmentHistory, owners }) => {
     const [detailsOpen, setDetailsOpen] = useState(false)
     const [isEmployee, setAuth] = useState(false)
+    const [animalOwner,setOwner]=useState([])
     const [myOwners, setPeople] = useState([])
     const [allOwners, registerOwners] = useState([])
     const [classes, defineClasses] = useState("card animal")
@@ -27,7 +28,9 @@ export const Animal = ({ animal, syncAnimals,
     },[animal, currentAnimal])
 
     
-    
+    useEffect(()=>{
+            return setOwner((currentAnimal.animalOwners),[animal,currentAnimal])
+    })
 
     useEffect(() => {
         setAuth(getCurrentUser().employee)
@@ -103,7 +106,9 @@ export const Animal = ({ animal, syncAnimals,
 
                             <h6>Owners</h6>
                             <span className="small">
-                                Owned by unknown
+                               Owner {animalOwner?.map((owner)=>{
+                                   return <p>{owner.user.name}</p>
+                               })}
                             </span>
 
                             {
@@ -111,7 +116,13 @@ export const Animal = ({ animal, syncAnimals,
                                     ? <select defaultValue=""
                                         name="owner"
                                         className="form-control small"
-                                        onChange={() => {}} >
+                                        onChange={(e) => {
+                                          
+
+                                            console.log("test" , )
+                                            
+                                          
+                                        }} >
                                         <option value="">
                                             Select {myOwners.length === 1 ? "another" : "an"} owner
                                         </option>
