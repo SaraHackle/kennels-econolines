@@ -95,7 +95,9 @@ export const Animal = ({ animal, syncAnimals,
 
                             <h6>Owners</h6>
                             <span className="small">
-                                Owned by unknown
+                               Owner {animal.animalOwners.map((owner)=>{
+                                   return <p>{owner.user.name}</p>
+                               })}
                             </span>
 
                             {
@@ -103,7 +105,13 @@ export const Animal = ({ animal, syncAnimals,
                                     ? <select defaultValue=""
                                         name="owner"
                                         className="form-control small"
-                                        onChange={() => {}} >
+                                        onChange={(e) => {
+                                            const id=(e.target.value)
+
+                                            console.log("test" ,id )
+                                            
+                                          
+                                        }} >
                                         <option value="">
                                             Select {myOwners.length === 1 ? "another" : "an"} owner
                                         </option>
