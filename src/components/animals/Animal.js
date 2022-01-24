@@ -20,6 +20,7 @@ export const Animal = ({ animal, syncAnimals,
     const { animalId } = useParams()
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
 
+    
     const [animalName, updateAnName] = useState([])
 
     useEffect(()=>{
@@ -64,6 +65,22 @@ export const Animal = ({ animal, syncAnimals,
                 })
         }
     }, [animalId])
+
+    const addOwner = (ownerObj) =>{
+        
+
+        const postOp = (obj) =>
+        ({
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+        })
+
+       return fetch(`http://localhost:8088/animalOwners`, postOp(ownerObj))
+        .then(()=>history.go("/animals"))
+    }
 
     return (
         <>
@@ -117,15 +134,27 @@ export const Animal = ({ animal, syncAnimals,
                                         name="owner"
                                         className="form-control small"
                                         onChange={(e) => {
-                                          
 
-                                            console.log("test" , )
+                                           let animalOwnerObj =
+                                           {
+                                               animalId: currentAnimal.id,
+                                               userId: parseInt(e.target.value)
+                                           }
+
+                                           getPeople();
+
+
+                                           console.log("myO " + myOwners)
+
+                                           console.log(animalOwnerObj)
+                                           
+                                          //  addOwner(animalOwnerObj)
                                             
                                           
                                         }} >
                                         <option value="">
                                             Select {myOwners.length === 1 ? "another" : "an"} owner
-                                        </option>
+                                        </option >
                                         {
                                             allOwners.map(o => <option key={o.id} value={o.id}>{o.name}</option>)
                                         }
