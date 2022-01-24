@@ -26,6 +26,7 @@ export default ({ employee }) => {
         if (resource?.employeeLocations?.length > 0) {
             markLocation(resource.employeeLocations[0])
         }
+        console.log("resource changed", resource)
     }, [resource])
 
     return (
@@ -50,10 +51,10 @@ export default ({ employee }) => {
                     employeeId
                         ? <>
                             <section>
-                              <p>Caring for {`${resource.animals?.length}`} animals</p>
+                              <p>Caring for {`${resource.animals?.length}`} animal(s)</p>
                             </section>
                             <section>
-                                Working at unknown location
+                                <p>Working at {`${resource.locations?.map(location=> location.location.name).join(", ")}`}</p>
                             </section>
                         </>
                         : ""
@@ -68,3 +69,5 @@ export default ({ employee }) => {
         </article>
     )
 }
+
+
