@@ -19,6 +19,16 @@ export const Animal = ({ animal, syncAnimals,
     const { animalId } = useParams()
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
 
+    const [animalName, updateAnName] = useState([])
+
+    useEffect(()=>{
+        console.log("anst: " + animal)
+        return updateAnName(currentAnimal.animalCaretakers)
+    },[animal, currentAnimal])
+
+    
+    
+
     useEffect(() => {
         setAuth(getCurrentUser().employee)
         resolveResource(animal, animalId, AnimalRepository.get)
@@ -70,6 +80,7 @@ export const Animal = ({ animal, syncAnimals,
                                     }
                                     else {
                                         history.push(`/animals/${currentAnimal.id}`)
+
                                     }
                                 }}> {currentAnimal.name} </button>
                         </h5>
@@ -84,7 +95,9 @@ export const Animal = ({ animal, syncAnimals,
                         <section>
                             <h6>Caretaker(s)</h6>
                             <span className="small">
-                                Unknown
+                            <p>{`${animalName?.map(users=>{
+                                return `${users.user.name}`
+                            })}`}</p>
                             </span>
 
 
