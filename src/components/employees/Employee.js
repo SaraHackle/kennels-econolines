@@ -4,7 +4,7 @@ import EmployeeRepository from "../../repositories/EmployeeRepository";
 import useResourceResolver from "../../hooks/resource/useResourceResolver";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import person from "./person.png"
-import {  useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import "./Employee.css"
 
 
@@ -72,9 +72,12 @@ export default ({ employee }) => {
                 }
 
                 {
-                    <button className="btn--fireEmployee" onClick={() => {
-                        deleteEmployee(resource.id)
-                    }}>Fire</button>
+                
+                  <Link to={ '/employees'}> <button className="btn--fireEmployee" onClick={() => {
+                        deleteEmployee(resource.id) 
+
+                    }}>Fire</button></Link>
+                    
                 }
 
             </section>

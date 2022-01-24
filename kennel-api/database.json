@@ -81,11 +81,6 @@
       "userId": 2
     },
     {
-      "id": 5,
-      "animalId": 5,
-      "userId": 12
-    },
-    {
       "id": 6,
       "animalId": 6,
       "userId": 7
@@ -170,12 +165,6 @@
       "name": "Greg Korte",
       "email": "greg@korte.com",
       "id": 10,
-      "employee": true
-    },
-    {
-      "name": "Madi Peper",
-      "email": "madi@peper.com",
-      "id": 12,
       "employee": true
     },
     {
@@ -276,11 +265,6 @@
       "id": 10,
       "userId": 10,
       "locationId": 1
-    },
-    {
-      "id": 12,
-      "userId": 12,
-      "locationId": 2
     }
   ],
   "locations": [
