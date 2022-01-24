@@ -20,7 +20,7 @@ export const Animal = ({ animal, syncAnimals,
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
 
     
-    console.log("currAn "+ JSON.stringify())
+    
 
     useEffect(() => {
         setAuth(getCurrentUser().employee)
