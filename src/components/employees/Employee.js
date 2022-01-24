@@ -28,6 +28,7 @@ export default ({ employee }) => {
         if (resource?.employeeLocations?.length > 0) {
             markLocation(resource.employeeLocations[0])
         }
+        console.log("resource changed", resource)
     }, [resource])
     const deleteEmployee = (id) => {
         fetch(`http://localhost:8088/users/${id}`, {
@@ -62,10 +63,10 @@ export default ({ employee }) => {
                     employeeId
                         ? <>
                             <section>
-                                Caring for 0 animals
+                              <p>Caring for {`${resource.animals?.length}`} animal(s)</p>
                             </section>
                             <section>
-                                Working at unknown location
+                                <p>Working at {`${resource.locations?.map(location=> location.location.name).join(", ")}`}</p>
                             </section>
                         </>
                         : ""
@@ -85,3 +86,5 @@ export default ({ employee }) => {
         </article>
     )
 }
+
+

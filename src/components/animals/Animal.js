@@ -23,7 +23,6 @@ export const Animal = ({ animal, syncAnimals,
     const [animalName, updateAnName] = useState([])
 
     useEffect(()=>{
-        console.log("anst: " + animal)
         return updateAnName(currentAnimal.animalCaretakers)
     },[animal, currentAnimal])
 
