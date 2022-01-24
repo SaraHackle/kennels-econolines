@@ -4,6 +4,7 @@ import EmployeeRepository from "../../repositories/EmployeeRepository";
 import useResourceResolver from "../../hooks/resource/useResourceResolver";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import person from "./person.png"
+import {  useHistory } from "react-router-dom"
 import "./Employee.css"
 
 
@@ -14,6 +15,7 @@ export default ({ employee }) => {
     const { employeeId } = useParams()
     const { getCurrentUser } = useSimpleAuth()
     const { resolveResource, resource } = useResourceResolver()
+    const history=useHistory()
 
     useEffect(() => {
         if (employeeId) {
@@ -27,6 +29,16 @@ export default ({ employee }) => {
             markLocation(resource.employeeLocations[0])
         }
     }, [resource])
+    const deleteEmployee = (id) => {
+        fetch(`http://localhost:8088/users/${id}`, {
+            method: "DELETE"
+        })
+        .then(
+            ()=>{
+                history.go("/users/")
+            }
+        )
+    }
 
     return (
         <article className={classes}>
@@ -60,7 +72,9 @@ export default ({ employee }) => {
                 }
 
                 {
-                    <button className="btn--fireEmployee" onClick={() => {}}>Fire</button>
+                    <button className="btn--fireEmployee" onClick={() => {
+                        deleteEmployee(resource.id)
+                    }}>Fire</button>
                 }
 
             </section>
