@@ -23,7 +23,10 @@ export const Register = () => {
         }
 
         register(newUser).then(() => {
-            history.push("/")
+            if (credentials.employee) {
+                history.push("/employees/create")
+
+            } else {history.push("/")}
         })
     }
 
@@ -80,7 +83,6 @@ export const Register = () => {
                         type="checkbox" name="employee" id="employee" />
                     <label htmlFor="employee"> Employee account? </label>
                 </fieldset>
-
                 <fieldset>
                     <button type="submit">
                         Sign in
