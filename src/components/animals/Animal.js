@@ -20,6 +20,34 @@ export const Animal = ({ animal, syncAnimals,
     const history = useHistory()
     const { animalId } = useParams()
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
+    const [treatment,upDateTreatment ]=useState({
+        description:"",
+        timestamp:new Date()
+    })
+    
+const submitTrearment=()=>{
+    const newTreatment={
+        description:treatment.description,
+        animalId:parseInt(animalId),
+        timestamp:new Date()
+    }
+
+    const postTreatment={
+        
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTreatment)
+    
+
+    }
+   return fetch("http://localhost:8088/treatments",postTreatment)
+        .then(response=>response.json())
+        .then(()=>{
+            history.push("/animals/")
+        })
+}
 
     const [animalName, updateAnName] = useState([])
 
@@ -74,6 +102,22 @@ export const Animal = ({ animal, syncAnimals,
             }
         )
     }
+    
+    const addOwner = (ownerObj) =>{
+        
+
+        const postOp = (obj) =>
+        ({
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+        })
+
+       return fetch(`http://localhost:8088/animalOwners`, postOp(ownerObj))
+        .then(()=>history.go("/animals"))
+    }
 
     return (
         <>
@@ -122,20 +166,28 @@ export const Animal = ({ animal, syncAnimals,
                             </span>
 
                             {
-                                myOwners.length < 2
+                                animalOwner?.length < 2
                                     ? <select defaultValue=""
                                         name="owner"
                                         className="form-control small"
                                         onChange={(e) => {
-                                          
 
-                                            console.log("test" , )
+                                           let animalOwnerObj =
+                                           {
+                                               animalId: currentAnimal.id,
+                                               userId: parseInt(e.target.value)
+                                           }
+
+                                           getPeople();
+                                        
+                                           
+                                          addOwner(animalOwnerObj)
                                             
                                           
                                         }} >
                                         <option value="">
                                             Select {myOwners.length === 1 ? "another" : "an"} owner
-                                        </option>
+                                        </option >
                                         {
                                             allOwners.map(o => <option key={o.id} value={o.id}>{o.name}</option>)
                                         }
@@ -143,21 +195,39 @@ export const Animal = ({ animal, syncAnimals,
                                     : null
                             }
 
-
+                            
                             {
                                 detailsOpen && "treatments" in currentAnimal
-                                    ? <div className="small">
-                                        <h6>Treatment History</h6>
-                                        {
+                                    ? 
+                                        <div>
+                                            {
+                                       isEmployee ? <div className="small">
+                                        <h6>Treatment Input</h6>
+                                        <input type="text" className="form-control small"  onChange={(event)=>{
+                                                const copy={...treatment}
+                                                copy.description=event.target.value
+                                                upDateTreatment(copy)
+                                                
+                                        }}/>                                   
+                                        <button className="btn btn-warning mt-3 form-control small" onClick={()=>{
+                                            submitTrearment()
+                                        }}>Add treatment</button> 
+                                            
+                                        </div> :""
+                                        }
+                                        {                      
                                             currentAnimal.treatments.map(t => (
                                                 <div key={t.id}>
+                                                    <h6>Treatment History</h6>  
                                                     <p style={{ fontWeight: "bolder", color: "grey" }}>
                                                         {new Date(t.timestamp).toLocaleString("en-US")}
                                                     </p>
                                                     <p>{t.description}</p>
                                                 </div>
                                             ))
+                                            
                                         }
+                                        
                                     </div>
                                     : ""
                             }
