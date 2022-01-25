@@ -5,6 +5,7 @@ import AnimalOwnerRepository from "../../repositories/AnimalOwnerRepository";
 import OwnerRepository from "../../repositories/OwnerRepository";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 import useResourceResolver from "../../hooks/resource/useResourceResolver";
+import { Link} from "react-router-dom"
 import "./AnimalCard.css"
 
 export const Animal = ({ animal, syncAnimals,
@@ -63,6 +64,16 @@ export const Animal = ({ animal, syncAnimals,
                 })
         }
     }, [animalId])
+    const deletePets = (id) => {
+        fetch(`http://localhost:8088/animals/${id}`, {
+            method: "DELETE"
+        })
+        .then(
+            ()=>{
+                history.go("/animals/")
+            }
+        )
+    }
 
     return (
         <>
@@ -152,15 +163,16 @@ export const Animal = ({ animal, syncAnimals,
                             }
 
                         </section>
+                        
 
                         {
                             isEmployee
-                                ? <button className="btn btn-warning mt-3 form-control small" onClick={() =>
+                                ?  <Link to={ '/animals'}><button className="btn btn-warning mt-3 form-control small" onClick={() =>
                                     AnimalOwnerRepository
                                         .removeOwnersAndCaretakers(currentAnimal.id)
-                                        .then(() => {}) // Remove animal
+                                        .then(() => {deletePets(currentAnimal.id)}) // Remove animal
                                         .then(() => {}) // Get all animals
-                                }>Discharge</button>
+                                }>Discharge</button> </Link>
                                 : ""
                         }
 
