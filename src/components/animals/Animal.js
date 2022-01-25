@@ -143,7 +143,7 @@ export const Animal = ({ animal, syncAnimals,
                                            getPeople();
                                         
                                            
-                                          //  addOwner(animalOwnerObj)
+                                          addOwner(animalOwnerObj)
                                             
                                           
                                         }} >
