@@ -1,18 +1,6 @@
 {
   "animals": [
     {
-      "id": 1,
-      "name": "Doodles",
-      "breed": "German Shepherd",
-      "locationId": 1
-    },
-    {
-      "id": 3,
-      "name": "Angus",
-      "breed": "Dalmatian 👾",
-      "locationId": 1
-    },
-    {
       "id": 4,
       "name": "Henley",
       "breed": "Carolina Retriever 🚒",
@@ -43,12 +31,6 @@
       "locationId": 1
     },
     {
-      "name": "Zipper",
-      "breed": "Terrier",
-      "locationId": 2,
-      "id": 9
-    },
-    {
       "name": "Blue",
       "breed": "Hound dog",
       "locationId": 2,
@@ -61,24 +43,12 @@
       "id": 11
     }
   ],
-  "treatments": [
-    {
-      "id": 1,
-      "animalId": 3,
-      "timestamp": 1634687829221,
-      "description": "Nails were trimmed"
-    }
-  ],
+  "treatments": [],
   "animalCaretakers": [
     {
       "id": 2,
       "animalId": 5,
       "userId": 9
-    },
-    {
-      "id": 3,
-      "animalId": 3,
-      "userId": 2
     },
     {
       "id": 6,
@@ -278,16 +248,6 @@
     }
   ],
   "animalOwners": [
-    {
-      "id": 3,
-      "animalId": 3,
-      "userId": 16
-    },
-    {
-      "id": 4,
-      "animalId": 4,
-      "userId": 17
-    },
     {
       "id": 5,
       "animalId": 5,
