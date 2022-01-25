@@ -21,21 +21,25 @@ export const AnimalListComponent = (props) => {
     const history = useHistory()
     let { toggleDialog, modalIsOpen } = useModal("#dialog--animal")
 
+    // updates animals based on animals retgurned from the repo or db
     const syncAnimals = () => {
         AnimalRepository.getAll().then(data => petAnimals(data))
     }
 
+    //upon init render updates owners and animal owners
     useEffect(() => {
         OwnerRepository.getAllCustomers().then(updateOwners)
         AnimalOwnerRepository.getAll().then(setAnimalOwners)
         syncAnimals()
     }, [])
 
+    //updates current animal and does something else
     const showTreatmentHistory = animal => {
         setCurrentAnimal(animal)
         toggleDialog()
     }
 
+    //when toggle dialog or modal is open changes listen for keyup and run handler and then remove the listner
     useEffect(() => {
         const handler = e => {
             if (e.keyCode === 27 && modalIsOpen) {

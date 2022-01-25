@@ -24,36 +24,43 @@ export const Animal = ({ animal, syncAnimals,
     
     const [animalName, updateAnName] = useState([])
 
+    //updates animal name when animal or current animal change to be the animalcaretaker object
     useEffect(()=>{
         return updateAnName(currentAnimal.animalCaretakers)
     },[animal, currentAnimal])
 
-    
+    //updates animal owner to the value of currentAnimal.animalOwners when animal or current animal changes
     useEffect(()=>{
             return setOwner((currentAnimal.animalOwners),[animal,currentAnimal])
     })
 
+    //upon initial render will set value of isEmployee and run resolve resource using animal param
+    // animal id use params and the value of the animal repository
     useEffect(() => {
         setAuth(getCurrentUser().employee)
         resolveResource(animal, animalId, AnimalRepository.get)
     }, [])
 
+    //pretty sure this handles a new registered owner
     useEffect(() => {
         if (owners) {
             registerOwners(owners)
         }
     }, [owners])
 
+    //this sets the myOwners var
     const getPeople = () => {
         return AnimalOwnerRepository
             .getOwnersByAnimal(currentAnimal.id)
             .then(people => setPeople(people))
     }
 
+    // will update the myOwners var when current animal changes
     useEffect(() => {
         getPeople()
     }, [currentAnimal])
 
+//when animalId changes sets myOwners to getOwnersbyAnimal then runs register owner
     useEffect(() => {
         if (animalId) {
             defineClasses("card animal--single")
@@ -65,6 +72,8 @@ export const Animal = ({ animal, syncAnimals,
                 })
         }
     }, [animalId])
+
+    // this deletes a pet from the db
     const deletePets = (id) => {
         fetch(`http://localhost:8088/animals/${id}`, {
             method: "DELETE"
@@ -76,6 +85,7 @@ export const Animal = ({ animal, syncAnimals,
         )
     }
 
+    // this assigns  pet a new owner
     const addOwner = (ownerObj) =>{
         
 

@@ -1,10 +1,14 @@
 import React from "react"
 import { useLocation } from "react-router-dom";
 import "./SearchResults.css"
+import { AnimalListComponent } from "../animals/AnimalList";
+import { Animal } from "../animals/Animal";
 
 
 export default () => {
+    
     const location = useLocation()
+    console.log("here " +JSON.stringify(location?.state?.animals))
 
     const displayAnimals = () => {
         if (location.state?.animals.length) {
@@ -12,7 +16,7 @@ export default () => {
                 <React.Fragment>
                     <h2>Matching Animals</h2>
                     <section className="animals">
-                        Display matching animals
+                        <AnimalListComponent animals={location.state.animals} />
                     </section>
                 </React.Fragment>
             )
