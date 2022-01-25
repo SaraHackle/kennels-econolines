@@ -20,8 +20,35 @@ export const Animal = ({ animal, syncAnimals,
     const history = useHistory()
     const { animalId } = useParams()
     const { resolveResource, resource: currentAnimal } = useResourceResolver()
-
+    const [treatment,upDateTreatment ]=useState({
+        description:"",
+        timestamp:new Date()
+    })
     
+const submitTrearment=()=>{
+    const newTreatment={
+        description:treatment.description,
+        animalId:parseInt(animalId),
+        timestamp:new Date()
+    }
+
+    const postTreatment={
+        
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTreatment)
+    
+
+    }
+   return fetch("http://localhost:8088/treatments",postTreatment)
+        .then(response=>response.json())
+        .then(()=>{
+            history.push("/animals/")
+        })
+}
+
     const [animalName, updateAnName] = useState([])
 
     //updates animal name when animal or current animal change to be the animalcaretaker object
@@ -86,6 +113,7 @@ export const Animal = ({ animal, syncAnimals,
     }
 
     // this assigns  pet a new owner
+    
     const addOwner = (ownerObj) =>{
         
 
@@ -178,21 +206,39 @@ export const Animal = ({ animal, syncAnimals,
                                     : null
                             }
 
-
+                            
                             {
                                 detailsOpen && "treatments" in currentAnimal
-                                    ? <div className="small">
-                                        <h6>Treatment History</h6>
-                                        {
+                                    ? 
+                                        <div>
+                                            {
+                                       isEmployee ? <div className="small">
+                                        <h6>Treatment Input</h6>
+                                        <input type="text" className="form-control small"  onChange={(event)=>{
+                                                const copy={...treatment}
+                                                copy.description=event.target.value
+                                                upDateTreatment(copy)
+                                                
+                                        }}/>                                   
+                                        <button className="btn btn-warning mt-3 form-control small" onClick={()=>{
+                                            submitTrearment()
+                                        }}>Add treatment</button> 
+                                            
+                                        </div> :""
+                                        }
+                                        {                      
                                             currentAnimal.treatments.map(t => (
                                                 <div key={t.id}>
+                                                    <h6>Treatment History</h6>  
                                                     <p style={{ fontWeight: "bolder", color: "grey" }}>
                                                         {new Date(t.timestamp).toLocaleString("en-US")}
                                                     </p>
                                                     <p>{t.description}</p>
                                                 </div>
                                             ))
+                                            
                                         }
+                                        
                                     </div>
                                     : ""
                             }
