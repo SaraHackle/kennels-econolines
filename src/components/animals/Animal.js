@@ -24,7 +24,6 @@ export const Animal = ({ animal, syncAnimals,
     const [animalName, updateAnName] = useState([])
 
     useEffect(()=>{
-        console.log("anst: " + animal)
         return updateAnName(currentAnimal.animalCaretakers)
     },[animal, currentAnimal])
 
@@ -129,7 +128,7 @@ export const Animal = ({ animal, syncAnimals,
                             </span>
 
                             {
-                                myOwners.length < 2
+                                animalOwner?.length < 2
                                     ? <select defaultValue=""
                                         name="owner"
                                         className="form-control small"
@@ -142,11 +141,7 @@ export const Animal = ({ animal, syncAnimals,
                                            }
 
                                            getPeople();
-
-
-                                           console.log("myO " + myOwners)
-
-                                           console.log(animalOwnerObj)
+                                        
                                            
                                           //  addOwner(animalOwnerObj)
                                             
