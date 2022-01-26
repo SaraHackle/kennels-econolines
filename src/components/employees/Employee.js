@@ -11,6 +11,7 @@ import "./Employee.css"
 export default ({ employee }) => {
     const [animalCount, setCount] = useState(0)
     const [location, markLocation] = useState({ name: "" })
+    const [isEmployee, setAuth] = useState(false)
     const [classes, defineClasses] = useState("card employee")
     const { employeeId } = useParams()
     const { getCurrentUser } = useSimpleAuth()
@@ -22,6 +23,10 @@ export default ({ employee }) => {
             defineClasses("card employee--single")
         }
         resolveResource(employee, employeeId, EmployeeRepository.get)
+    }, [])
+
+    useEffect(() => {
+        setAuth(getCurrentUser().employee)
     }, [])
 
     useEffect(() => {
@@ -73,12 +78,13 @@ export default ({ employee }) => {
                 }
 
                 {
-                
-                  <Link to={ '/employees'}> <button className="btn--fireEmployee" onClick={() => {
-                        deleteEmployee(resource.id) 
 
-                    }}>Fire</button></Link>
-                    
+                    isEmployee
+                    ?  <Link to={ '/employees'}> <button className="btn--fireEmployee" onClick={() => {
+                            deleteEmployee(resource.id) 
+
+                        }}>Fire</button></Link>
+                        : ""
                 }
 
             </section>
