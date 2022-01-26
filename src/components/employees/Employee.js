@@ -20,14 +20,14 @@ export default ({ employee }) => {
   useEffect(() => {
     if (!employeeId) {
       EmployeeRepository.get(employee.id).then((employeeWithAnimals) => {
-        setCount(employeeWithAnimals.animals?.length);
+        setCount(employeeWithAnimals.animals?. length);
       });
     }
   }, [resource]);
 
   useEffect(() => {
     if (employeeId) {
-      defineClasses("card employee--single");
+      defineClasses("card employee--single1");
     }
     resolveResource(employee, employeeId, EmployeeRepository.get);
   }, []);
