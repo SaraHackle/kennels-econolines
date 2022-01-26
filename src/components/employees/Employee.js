@@ -78,12 +78,13 @@ export default ({ employee }) => {
                 }
 
                 {
-                isEmployee
-                ?  <Link to={ '/employees'}> <button className="btn--fireEmployee" onClick={() => {
-                        deleteEmployee(resource.id) 
 
-                    }}>Fire</button></Link>
-                    : ""
+                    isEmployee
+                    ?  <Link to={ '/employees'}> <button className="btn--fireEmployee" onClick={() => {
+                            deleteEmployee(resource.id) 
+
+                        }}>Fire</button></Link>
+                        : ""
                 }
 
             </section>
