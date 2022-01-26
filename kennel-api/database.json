@@ -348,6 +348,16 @@
       "id": 14,
       "userId": 14,
       "locationId": 2
+    },
+    {
+      "id": 15,
+      "userId": 22,
+      "locationId": 1
+    },
+    {
+      "id": 16,
+      "userId": 23,
+      "locationId": 2
     }
   ],
   "locations": [
