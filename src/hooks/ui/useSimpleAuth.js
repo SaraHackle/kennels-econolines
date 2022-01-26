@@ -1,7 +1,7 @@
 import Settings from "../../repositories/Settings"
 
 
-const useSimpleAuth = () => {
+export const useSimpleAuth = () => {
 
     const isAuthenticated = () => localStorage.getItem("kennel_token") !== null
         || sessionStorage.getItem("kennel_token") !== null

@@ -5,6 +5,7 @@ import { AnimalListComponent } from "../animals/AnimalList";
 import { Animal } from "../animals/Animal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useState, useEffect } from "react";
+import { useSimpleAuth} from "../../hooks/ui/useSimpleAuth";
 
 
 export default () => {
@@ -12,10 +13,28 @@ export default () => {
     
     const location = useLocation()
     
+    const {a, aa, aaa,aaaa, getCurrentUser} = useSimpleAuth();
+    let usr =getCurrentUser()
+    usr= JSON.stringify(usr)
+    usr= JSON.parse(usr)
+    const currentUserId = usr.id
+
+    const [currentUserObj, setUsers] = useState([])
+
+    useEffect(()=>{
+        fetch(`http://localhost:8088/users`)
+        .then(usrs=> usrs.json())
+        .then(usrs=>usrs.find(user=>user.id === currentUserId))
+        .then(usrs=> setUsers(usrs))
+    }, [])
     
 
     const displayAnimals = () => {
+       
         if (location.state?.animals.length) {
+            console.log("curUs: " + currentUserObj.employee)
+            if (currentUserObj?.employee === true)
+            {
             return (
                 <React.Fragment>
                     <h2>Matching Animals</h2>
@@ -25,6 +44,11 @@ export default () => {
                 </React.Fragment>
             )
         }
+        else
+        {
+        return <h2>only employees can search animals</h2>
+        }
+    }
     }
 
     const displayEmployees = () => {
