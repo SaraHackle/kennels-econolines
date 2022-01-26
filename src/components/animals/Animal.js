@@ -129,7 +129,7 @@ const submitTrearment=()=>{
        return fetch(`http://localhost:8088/animalOwners`, postOp(ownerObj))
         .then(()=>history.go("/animals"))
     }
-
+  
     return (
         <>
             <li className={classes}>
