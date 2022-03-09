@@ -1,5 +1,17 @@
 # Nashville Kennels
 
+This project was the beginning of my full understanding of React and reinforced my knowledge of JavaScript
+
+## My Contributions to this project
+
+* Assigning employees to a location
+* Diplaying Animal and Employee count for each location
+* Displaying Animal Care Count and Location on Employee Page
+* Restricting the fire option to only a user logged in as an Employee
+* Routing Locations
+
+
+
 ## Deployed Working App
 
 You can visit the [deployed Nashville Kennels application](https://kennels.nss.team) to see how the application should work.
